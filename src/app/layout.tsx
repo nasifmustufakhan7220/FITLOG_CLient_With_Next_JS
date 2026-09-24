@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Shared/Navbar";
 import Footer from "@/components/Shared/Footer";
+import ExerciseContextProvider from "@/context/exerciseContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,9 +24,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.className} h-full antialiased scroll-smooth overflow-x-hidden`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar/>
-        {children}
-        <Footer/>
+        <ExerciseContextProvider>
+          <Navbar/>
+          {children}
+          <Footer/>
+        </ExerciseContextProvider>
       </body>
     </html>
   );
