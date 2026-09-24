@@ -17,6 +17,7 @@ const ExerciseCard = ({ exercise }: IExerciseProps) => {
           alt="Exercise image"
           width={400}
           height={250}
+          className="w-full h-auto"
         />
       </figure>
 

@@ -5,8 +5,11 @@ import Link from "next/link";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useContext } from "react";
+import { exerciseContext } from "@/context/exerciseContext";
 
 const Navbar = () => {
+  const {addPlans} = useContext(exerciseContext)
   const pathname = usePathname();
 
   const links = (
@@ -109,9 +112,9 @@ const Navbar = () => {
               type="button"
               className="py-2 text-xs font-semibold text-white sm:text-sm cursor-pointer flex items-center gap-2"
             >
-              Saved{" "}
+              Plan{" "}
               <span className="w-6 h-6 rounded-full border-2 bg-[#C2F800] flex items-center justify-center text-black text-sm">
-                0
+                {addPlans.length}
               </span>
             </button>
 

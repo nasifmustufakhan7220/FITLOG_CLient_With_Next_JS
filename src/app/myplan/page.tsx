@@ -1,6 +1,13 @@
+"use client"
 import { oswald } from "@/app/font";
+import EmptyTextShowing from "@/components/EmptyTextShowing/EmptyTextShowing";
+import PlanSaveCard from "@/components/WorksOutCardsForPlan&Save/Plan&SaveCard";
+import { exerciseContext } from "@/context/exerciseContext";
+import { useContext } from "react";
 
 const MyPlanPage = () => {
+    const {addPlans} = useContext(exerciseContext);
+    
   return (
     <div className="mt-12 w-full sm:mt-16 lg:mt-20">
       {/* Header */}
@@ -68,16 +75,13 @@ const MyPlanPage = () => {
             name="my_tabs_6"
             className="tab flex-1 text-xs font-medium text-[#8A92A0] transition-all duration-300 checked:bg-[#CCFF00] checked:text-[#13151c] sm:text-sm"
             aria-label="Today's Plan"
+            defaultChecked
           />
 
           <div className="tab-content mt-1 w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:mt-2 sm:p-6">
-            <h2 className="mb-3 text-base font-semibold text-white sm:mb-4 sm:text-lg lg:text-xl">
-              Today&apos;s Plan
-            </h2>
-
-            <p className="text-xs leading-5 text-[#8A92A0] sm:text-sm">
-              Your workout plan for today will appear here.
-            </p>
+            {
+                addPlans.length > 0 ? addPlans.map((exercise, indx)=><PlanSaveCard key={indx} exercise={exercise}/>) : <EmptyTextShowing/>
+            }
           </div>
 
           {/* Saved */}
@@ -86,7 +90,7 @@ const MyPlanPage = () => {
             name="my_tabs_6"
             className="tab flex-1 text-xs font-medium text-[#8A92A0] transition-all duration-300 checked:bg-[#CCFF00] checked:text-[#13151c] sm:text-sm"
             aria-label="Saved"
-            defaultChecked
+            
           />
 
           <div className="tab-content mt-1 w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:mt-2 sm:p-6">

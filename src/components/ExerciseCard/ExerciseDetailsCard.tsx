@@ -1,6 +1,7 @@
 import { IExercisesType } from "@/types/workOut.type";
 import Image from "next/image";
-import { FaBookmark, FaCalendarPlus } from "react-icons/fa";
+import AddTodayPlanBtn from "../AddToday&SaveButton/AddTodayBtn";
+import SaveBtn from "../AddToday&SaveButton/SaveBtn";
 
 
 interface ExerciseDetailsCardProps {
@@ -112,15 +113,9 @@ const ExerciseDetailsCard = ({ exercise }: ExerciseDetailsCardProps) => {
 
           {/* Action Buttons */}
           <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap">
-            <button className="btn h-11 min-h-11 rounded-lg border-none bg-[#b6ff00] px-4 text-xs font-bold text-black hover:bg-[#a4e600]">
-              <FaCalendarPlus className="text-sm" />
-              Add to today&apos;s plan
-            </button>
+            <AddTodayPlanBtn exercise={exercise}/>
 
-            <button className="btn h-11 min-h-11 rounded-lg border border-[#363b48] bg-transparent px-4 text-xs font-medium text-gray-300 hover:border-[#b6ff00] hover:bg-[#1c2028]">
-              <FaBookmark className="text-sm" />
-              Save for later
-            </button>
+            <SaveBtn exercise={exercise} />
           </div>
         </div>
       </div>

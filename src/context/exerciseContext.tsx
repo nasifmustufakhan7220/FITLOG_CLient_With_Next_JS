@@ -4,21 +4,21 @@ import { IExercisesType } from "@/types/workOut.type";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 
 interface IContextType{
-    exercises: IExercisesType[];
-    setExercises: Dispatch<SetStateAction<IExercisesType[]>>
+    addPlans: IExercisesType[];
+    setaddPlans: Dispatch<SetStateAction<IExercisesType[]>>
 }
 
 export const exerciseContext = createContext<IContextType>({
-    exercises:[],
-    setExercises:()=>{}
+    addPlans:[],
+    setaddPlans:()=>{}
 });
 
 
 const ExerciseContextProvider = ({children}:{children:React.ReactNode}) => {
-    const [exercises, setExercises] = useState<IExercisesType[]>([]);
+    const [addPlans, setaddPlans] = useState<IExercisesType[]>([]);
     const obj={
-        exercises,
-        setExercises
+        addPlans,
+        setaddPlans
     }
     return (
        <exerciseContext.Provider value={obj}>
