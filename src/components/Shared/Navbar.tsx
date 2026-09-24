@@ -94,13 +94,13 @@ const Navbar = () => {
         </div>
 
         {/* Right Section: Actions */}
-        <div className="navbar-end min-w-0">
-          <div className="flex items-center gap-1 sm:gap-2 md:gap-4 ">
-            <button type="button" className="rounded-full px-2 py-2 text-xs font-semibold text-white sm:px-3 sm:text-sm cursor-pointer">
+        <div className="navbar-end">
+          <div className="flex items-center gap-2">
+            <button type="button" className=" py-2 text-xs font-semibold text-white sm:text-sm cursor-pointer">
               Plan <span className="rounded-3xl bg-[#c2f800] p-1 text-black">0</span>
             </button>
 
-            <button type="button" className="rounded-full px-2 py-2 text-xs font-semibold text-white sm:px-3 sm:text-sm cursor-pointer">
+            <button type="button" className=" py-2 text-xs font-semibold text-white sm:text-sm cursor-pointer">
               Saved <span className="rounded-3xl bg-[#c2f800] p-1 text-black">0</span>
             </button>
           </div>
