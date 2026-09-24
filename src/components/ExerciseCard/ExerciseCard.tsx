@@ -13,10 +13,10 @@ interface IExerciseProps {
 
 const ExerciseCard = ({ exercise }:IExerciseProps) => {
   return (
-    <div className="card w-full max-w-98.75 overflow-hidden rounded-2xl border border-[#292c35] bg-[#15171d] text-white shadow-none transition-all duration-300 hover:border-[#3a3e48]">
+    <div className="card w-full overflow-hidden rounded-2xl border border-[#292c35] bg-[#15171d] text-white shadow-none transition-all duration-300 hover:border-[#3a3e48]">
 
       {/* Exercise Image */}
-      <figure className="h-48 w-full overflow-hidden">
+      <figure className="w-full h-75">
        <Image
       src={exercise.image}
       alt="Exercise image"
