@@ -7,7 +7,7 @@ import { oswald } from "@/app/font";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-[#1c1f24] bg-[#0b0d10] text-neutral-content">
+    <footer className="border-t mt-8 border-[#1c1f24] bg-[#0b0d10] text-neutral-content">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 sm:gap-5 sm:px-6 md:px-8 lg:flex-row">
         {/* Logo */}
         <Link

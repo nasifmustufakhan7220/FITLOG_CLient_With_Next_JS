@@ -1,4 +1,3 @@
-
 import { oswald } from "@/app/font";
 import Image from "next/image";
 import bannerImg from "@/assets/banner.png";
@@ -28,12 +27,12 @@ const Banner = () => {
           </p>
 
           {/* Button */}
-          <button
-            type="button"
+          <a
+            href="#library"
             className="btn h-auto min-h-11 rounded-full border-none bg-[#C2F800] px-6 py-3 text-xs font-bold text-black hover:bg-[#a8d900] sm:px-7"
           >
             BROWSE WORKOUTS
-          </button>
+          </a>
         </div>
 
         {/* Right Image */}
