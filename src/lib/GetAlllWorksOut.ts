@@ -4,3 +4,9 @@ export const getExercises = async()=>{
         return res.json();
     
 }
+
+export const getExerciseDetails = async(id:number)=>{
+        const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`, {next:{revalidate: 60}});
+        if(!res.ok) throw new Error("Failed to fetch exercise details");
+        return res.json();
+}
