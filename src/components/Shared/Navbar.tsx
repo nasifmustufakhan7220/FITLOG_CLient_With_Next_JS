@@ -1,4 +1,3 @@
-
 "use client";
 
 import { oswald } from "@/app/font";
@@ -15,13 +14,25 @@ const Navbar = () => {
       <li>
         <Link
           href="/"
-          className={`text-xs font-bold transition-all duration-200 sm:text-sm ${
+          className={`rounded-full px-4 py-2 text-xs font-bold transition duration-200 sm:px-5 sm:text-sm ${
             pathname === "/"
-              ? "rounded-full bg-[#1c2c0c] px-4 py-2 text-[#c2f800] sm:px-5"
+              ? "bg-[#1c2c0c] text-[#c2f800]"
               : "text-white hover:text-[#c2f800]"
           }`}
         >
           Workouts
+        </Link>
+      </li>
+      <li>
+        <Link
+          href="/myplan"
+          className={`rounded-full px-4 py-2 text-xs font-bold transition duration-200 sm:px-5 sm:text-sm ${
+            pathname === "/myplan"
+              ? "bg-[#1c2c0c] text-[#c2f800]"
+              : "text-white hover:text-[#c2f800]"
+          }`}
+        >
+          My Plan
         </Link>
       </li>
     </>
@@ -88,20 +99,30 @@ const Navbar = () => {
 
         {/* Center Section: Desktop Navigation */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal items-center px-1">
-            {links}
-          </ul>
+          <ul className="menu menu-horizontal items-center px-1">{links}</ul>
         </div>
 
         {/* Right Section: Actions */}
         <div className="navbar-end">
           <div className="flex items-center gap-2">
-            <button type="button" className="py-2 text-xs font-semibold text-white sm:text-sm cursor-pointer flex items-center gap-2">
-              Saved <span className="w-6 h-6 rounded-full border-2 bg-[#C2F800] flex items-center justify-center text-black text-sm">0</span>
+            <button
+              type="button"
+              className="py-2 text-xs font-semibold text-white sm:text-sm cursor-pointer flex items-center gap-2"
+            >
+              Saved{" "}
+              <span className="w-6 h-6 rounded-full border-2 bg-[#C2F800] flex items-center justify-center text-black text-sm">
+                0
+              </span>
             </button>
 
-            <button type="button" className="py-2 text-xs font-semibold text-white sm:text-sm cursor-pointer flex items-center gap-2">
-              Saved <span className="w-6 h-6 rounded-full border-2 border-gray-700 flex items-center justify-center text-white text-sm">0</span>
+            <button
+              type="button"
+              className="py-2 text-xs font-semibold text-white sm:text-sm cursor-pointer flex items-center gap-2"
+            >
+              Saved{" "}
+              <span className="w-6 h-6 rounded-full border-2 border-gray-700 flex items-center justify-center text-white text-sm">
+                0
+              </span>
             </button>
           </div>
         </div>

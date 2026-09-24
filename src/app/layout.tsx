@@ -18,7 +18,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme="light"
-      className={`${inter.className} h-full antialiased scroll-smooth`}
+      data-scroll-behavior="smooth"
+      scrollbar-gutter= "stable"
+      className={`${inter.className} h-full antialiased scroll-smooth overflow-x-hidden`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar/>
