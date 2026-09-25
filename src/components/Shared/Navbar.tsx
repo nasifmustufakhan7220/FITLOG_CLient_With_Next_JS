@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { exerciseContext } from "@/context/exerciseContext";
 
 const Navbar = () => {
-  const {addPlans} = useContext(exerciseContext)
+  const {addPlans,saveLater} = useContext(exerciseContext)
   const pathname = usePathname();
 
   const links = (
@@ -124,7 +124,7 @@ const Navbar = () => {
             >
               Saved{" "}
               <span className="w-6 h-6 rounded-full border-2 border-gray-700 flex items-center justify-center text-white text-sm">
-                0
+               {saveLater.length}
               </span>
             </button>
           </div>

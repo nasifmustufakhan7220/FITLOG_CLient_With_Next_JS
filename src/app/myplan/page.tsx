@@ -6,7 +6,7 @@ import { exerciseContext } from "@/context/exerciseContext";
 import { useContext } from "react";
 
 const MyPlanPage = () => {
-    const {addPlans} = useContext(exerciseContext);
+    const {addPlans, saveLater} = useContext(exerciseContext);
     
   return (
     <div className="mt-12 w-full sm:mt-16 lg:mt-20">
@@ -94,13 +94,9 @@ const MyPlanPage = () => {
           />
 
           <div className="tab-content mt-1 w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:mt-2 sm:p-6">
-            <h2 className="mb-3 text-base font-semibold text-white sm:mb-4 sm:text-lg lg:text-xl">
-              Saved Exercises
-            </h2>
-
-            <p className="text-xs leading-5 text-[#8A92A0] sm:text-sm">
-              Your saved exercises will appear here.
-            </p>
+            {
+              saveLater.length > 0 ? <div className="flex flex-col gap-4">{saveLater.map((exercise, indx)=> <PlanSaveCard key={indx} exercise={exercise}></PlanSaveCard>)}</div> : <EmptyTextShowing/>
+            }
           </div>
 
         </div>
