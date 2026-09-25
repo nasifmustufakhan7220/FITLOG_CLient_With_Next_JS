@@ -2,9 +2,10 @@ import { IExercisesType } from "@/types/workOut.type";
 
 import Image from "next/image";
 
-import { FaCheck, FaClock, FaFire, FaStar, FaXmark } from "react-icons/fa6";
+import { FaCheck, FaClock, FaFire, FaStar } from "react-icons/fa6";
 
 import ViewDetailsBtn from "../ViewDetailsBtn/ViewDetailsBtn";
+import RemoveBtn from "../RemoveExerciseFromPlanAndSave/RemoveBtn";
 
 interface IPlanProps {
   exercise: IExercisesType;
@@ -74,13 +75,7 @@ const PlanSaveCard = ({ exercise }: IPlanProps) => {
           </button>
 
           {/* Close */}
-          <button
-            type="button"
-            aria-label="Remove workout"
-            className="btn btn-circle btn-ghost hidden h-10 min-h-0 w-10 text-[#737985] hover:bg-[#1d2027] hover:text-white sm:flex"
-          >
-            <FaXmark className="text-lg" />
-          </button>
+          <RemoveBtn/>
         </div>
       </div>
     </div>
