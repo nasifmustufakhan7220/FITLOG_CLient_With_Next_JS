@@ -1,6 +1,7 @@
 import { IExercisesType } from "@/types/workOut.type";
 import Image from "next/image";
 import { FaCheck, FaClock, FaFire, FaStar, FaXmark } from "react-icons/fa6";
+import ViewDetailsBtn from "../ViewDetailsBtn/ViewDetailsBtn";
 
 interface IPlanProps {
   exercise: IExercisesType;
@@ -85,12 +86,7 @@ const PlanSaveCard = ({ exercise }: IPlanProps) => {
         {/* Actions */}
         <div className=" flex w-full items-center gap-3 sm:justify-end md:w-auto md:shrink-0">
           {/* View Details */}
-          <button
-            type="button"
-            className=" btn h-11 min-h-0 flex-1 rounded-full border border-[#38404d] bg-transparent  px-5  text-sm font-normal text-white shadow-none hover:border-[#596271] hover:bg-[#1a1e25] sm:flex-none"
-          >
-            View Details
-          </button>
+          <ViewDetailsBtn exercise={exercise} />
 
           {/* Mark as Done */}
           <button
