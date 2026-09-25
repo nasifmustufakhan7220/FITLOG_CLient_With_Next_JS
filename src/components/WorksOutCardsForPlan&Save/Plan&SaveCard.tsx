@@ -17,7 +17,7 @@ const PlanSaveCard = ({ exercise }: IPlanProps) => {
       <div className="flex flex-col gap-5 p-4 sm:p-5 md:flex-row md:items-center md:gap-5 lg:p-5">
         {/* Workout Image */}
         <div className="w-full shrink-0 md:w-43.75 lg:w-44">
-          <Image
+          <Image loading="eager"
             src={exercise.image}
             alt={exercise.name}
             width={200}

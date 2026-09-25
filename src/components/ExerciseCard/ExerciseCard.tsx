@@ -12,7 +12,7 @@ const ExerciseCard = ({ exercise }: IExerciseProps) => {
     <div className="card w-full overflow-hidden rounded-2xl border border-[#292c35] bg-[#15171d] text-white shadow-none transition-all duration-300 hover:border-[#3a3e48]">
       {/* Exercise Image */}
       <figure className="w-full h-75">
-        <Image
+        <Image loading="eager"
           src={exercise.image}
           alt="Exercise image"
           width={400}

@@ -39,7 +39,7 @@ const ExerciseDetailsCard = ({ exercise }: ExerciseDetailsCardProps) => {
       <div className="grid grid-cols-1 gap-6 rounded-2xl bg-[#313338] p-4 shadow-xl sm:p-6 lg:grid-cols-2 lg:gap-8 lg:p-8 xl:grid-cols-[1fr_1.05fr]">
         {/* Exercise Image */}
         <div className="relative aspect-4/5 w-full overflow-hidden rounded-xl sm:aspect-4/3 lg:aspect-auto lg:min-h-130">
-          <Image
+          <Image loading="eager"
             src={image}
             alt={name}
             fill

@@ -1,12 +1,14 @@
 "use client";
 import { oswald } from "@/app/font";
 import EmptyTextShowing from "@/components/EmptyTextShowing/EmptyTextShowing";
+import PlanAndSaveLoading from "@/components/PlanAndSaveLoading/PlanAndSaveLoading";
 import PlanSaveCard from "@/components/WorksOutCardsForPlan&Save/Plan&SaveCard";
 import { exerciseContext } from "@/context/exerciseContext";
 import { useContext } from "react";
 
 const MyPlanPage = () => {
-  const { addPlans, saveLater, toggle, setToggle} = useContext(exerciseContext);
+  const { addPlans, saveLater, toggle, setToggle, isLoading } =
+    useContext(exerciseContext);
 
   return (
     <div className="mt-12 w-full sm:mt-16 lg:mt-20">
@@ -47,7 +49,9 @@ const MyPlanPage = () => {
               </div>
 
               <div className="stat-value mt-1 text-[30px] font-bold text-white sm:text-[34px] lg:text-[36px]">
-                <span>{addPlans.reduce((acc, curr)=> acc+= curr.duration,0)}</span>
+                <span>
+                  {addPlans.reduce((acc, curr) => (acc += curr.duration), 0)}
+                </span>
               </div>
             </div>
 
@@ -58,7 +62,12 @@ const MyPlanPage = () => {
               </div>
 
               <div className="stat-value mt-1 text-[30px] font-bold text-white sm:text-[34px] lg:text-[36px]">
-                <span>{addPlans.reduce((acc, curr)=> acc+=curr.caloriesBurned,0)}</span>
+                <span>
+                  {addPlans.reduce(
+                    (acc, curr) => (acc += curr.caloriesBurned),
+                    0,
+                  )}
+                </span>
               </div>
             </div>
           </div>
@@ -84,7 +93,9 @@ const MyPlanPage = () => {
               </div>
 
               <div className="stat-value mt-1 text-[30px] font-bold text-white sm:text-[34px] lg:text-[36px]">
-                <span>{saveLater.reduce((acc,curr)=>acc+=curr.duration,0)}</span>
+                <span>
+                  {saveLater.reduce((acc, curr) => (acc += curr.duration), 0)}
+                </span>
               </div>
             </div>
 
@@ -95,20 +106,24 @@ const MyPlanPage = () => {
               </div>
 
               <div className="stat-value mt-1 text-[30px] font-bold text-white sm:text-[34px] lg:text-[36px]">
-                <span>{saveLater.reduce((acc,curr)=>acc+=curr.caloriesBurned,0)}</span>
+                <span>
+                  {saveLater.reduce(
+                    (acc, curr) => (acc += curr.caloriesBurned),
+                    0,
+                  )}
+                </span>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      
-
       {/* Tabs */}
       <div className="mx-auto mt-6 w-full max-w-280 px-4 sm:mt-8 sm:px-6 lg:px-8">
         <div className="tabs tabs-box w-full bg-[#13151c] p-1.5 sm:p-2">
           {/* Today's Plan */}
-          <input onChange={()=>setToggle(true)}
+          <input
+            onChange={() => setToggle(true)}
             type="radio"
             name="my_tabs_6"
             className="tab flex-1 text-xs font-medium text-[#8A92A0] transition-all duration-300 checked:bg-[#CCFF00] checked:text-[#13151c] sm:text-sm"
@@ -117,7 +132,9 @@ const MyPlanPage = () => {
           />
 
           <div className="tab-content mt-1 w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:mt-2 sm:p-6">
-            {addPlans.length > 0 ? (
+            {isLoading ? (
+              <PlanAndSaveLoading/>
+            ) : addPlans.length > 0 ? (
               <div className="flex flex-col gap-4">
                 {addPlans.map((exercise, indx) => (
                   <PlanSaveCard key={indx} exercise={exercise}></PlanSaveCard>
@@ -129,7 +146,8 @@ const MyPlanPage = () => {
           </div>
 
           {/* Saved */}
-          <input onChange={()=>setToggle(false)}
+          <input
+            onChange={() => setToggle(false)}
             type="radio"
             name="my_tabs_6"
             className="tab flex-1 text-xs font-medium text-[#8A92A0] transition-all duration-300 checked:bg-[#CCFF00] checked:text-[#13151c] sm:text-sm"
@@ -137,7 +155,9 @@ const MyPlanPage = () => {
           />
 
           <div className="tab-content mt-1 w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:mt-2 sm:p-6">
-            {saveLater.length > 0 ? (
+            {isLoading ? (
+              <PlanAndSaveLoading/>
+            ) : saveLater.length > 0 ? (
               <div className="flex flex-col gap-4">
                 {saveLater.map((exercise, indx) => (
                   <PlanSaveCard key={indx} exercise={exercise}></PlanSaveCard>
