@@ -75,7 +75,7 @@ const PlanSaveCard = ({ exercise }: IPlanProps) => {
           </button>
 
           {/* Close */}
-          <RemoveBtn/>
+          <RemoveBtn exercise={exercise}/>
         </div>
       </div>
     </div>

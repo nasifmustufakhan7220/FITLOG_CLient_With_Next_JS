@@ -26,7 +26,7 @@ const SaveBtn = ({exercise}:{exercise:IExercisesType}) => {
             position: "top-right",
             autoClose: 2000,
             transition: Slide,
-            className: "!bg[#13151c]",
+            className: "!bg-[#13151c]"
         })
     }
     return (
