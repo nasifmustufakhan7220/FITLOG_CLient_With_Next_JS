@@ -80,7 +80,7 @@ const MyPlanPage = () => {
 
           <div className="tab-content mt-1 w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:mt-2 sm:p-6">
             {
-                addPlans.length > 0 ? addPlans.map((exercise, indx)=><PlanSaveCard key={indx} exercise={exercise}/>) : <EmptyTextShowing/>
+                addPlans.length > 0 ? <div className="flex flex-col gap-4">{addPlans.map((exercise, indx)=> <PlanSaveCard key={indx} exercise={exercise}></PlanSaveCard>)}</div> : <EmptyTextShowing/>
             }
           </div>
 

@@ -7,9 +7,22 @@ import { Slide, toast } from "react-toastify";
 
 const AddTodayPlanBtn = ({ exercise }: { exercise: IExercisesType }) => {
   const { addPlans, setaddPlans } = useContext(exerciseContext);
-  const handelAddToday = () => {
+  const handelAddToday = (id:number) => {
+
+    const exited = addPlans.find(planId=> Number(planId.id) === Number(id));
+
+    if(exited){
+      toast.error(`${exercise.name} is already added to today's plan!!!`,{
+        position: "top-right",
+        autoClose: 2000,
+        transition: Slide,
+        className: "!bg-[#13151c]"
+      });
+      return;
+    }
+
     setaddPlans([...addPlans, exercise]);
-    toast.success("Item added to cart successfully!", {
+    toast.success(`${exercise.name} added to today's plan successfully!`, {
       position: "top-right",
       autoClose: 3000,
       transition: Slide,
@@ -19,7 +32,7 @@ const AddTodayPlanBtn = ({ exercise }: { exercise: IExercisesType }) => {
   return (
     <div>
       <button
-        onClick={() => handelAddToday()}
+        onClick={() => handelAddToday(exercise.id)}
         className="btn h-11 min-h-11 rounded-lg border-none bg-[#b6ff00] px-4 text-xs font-bold text-black hover:bg-[#a4e600]"
       >
         <FaCalendarPlus className="text-sm" />
