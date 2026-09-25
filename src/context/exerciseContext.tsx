@@ -12,6 +12,8 @@ interface IContextType{
     setToggle:Dispatch<SetStateAction<boolean>>
     isLoading: boolean;
     setIsLoading:Dispatch<SetStateAction<boolean>>
+    isDisabled: boolean;
+    setIsDisabled:Dispatch<SetStateAction<boolean>>
 
 }
 
@@ -24,6 +26,8 @@ export const exerciseContext = createContext<IContextType>({
     setToggle:()=>{},
     isLoading: true,
     setIsLoading:()=>{},
+    isDisabled: true,
+    setIsDisabled:()=>{},
 });
 
 
@@ -32,7 +36,7 @@ const ExerciseContextProvider = ({children}:{children:React.ReactNode}) => {
     const [saveLater, setSaveLater] = useState<IExercisesType[]>([]);
     const [toggle, setToggle] = useState<boolean>(true);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    
+    const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
     useEffect(()=>{
         const getPlanExercise = localStorage.getItem("addPlans");
@@ -69,6 +73,22 @@ const ExerciseContextProvider = ({children}:{children:React.ReactNode}) => {
 
     },[saveLater, isLoading]);
 
+    useEffect(()=>{
+        const getAddPlans = localStorage.getItem("addPlans");
+        if(getAddPlans){
+            const parsed = JSON.parse(getAddPlans);
+            const todayPlanCount = parsed.length;
+            
+            if(todayPlanCount === 5){
+                setIsDisabled(true);
+                return;
+            }else if(todayPlanCount < 5){
+                setIsDisabled(false);
+                return;
+            }
+        }
+    },[addPlans]);
+
     const obj={
         addPlans,
         setaddPlans,
@@ -78,6 +98,8 @@ const ExerciseContextProvider = ({children}:{children:React.ReactNode}) => {
         setToggle,
         isLoading,
         setIsLoading,
+        isDisabled,
+        setIsDisabled
     }
     return (
        <exerciseContext.Provider value={obj}>

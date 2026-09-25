@@ -6,7 +6,8 @@ import { FaCalendarPlus } from "react-icons/fa";
 import { Slide, toast } from "react-toastify";
 
 const AddTodayPlanBtn = ({ exercise }: { exercise: IExercisesType }) => {
-  const { addPlans, setaddPlans } = useContext(exerciseContext);
+  const { addPlans, setaddPlans,isDisabled} = useContext(exerciseContext);
+
   const handelAddToday = (id:number) => {
 
     const exited = addPlans.find(planId=> Number(planId.id) === Number(id));
@@ -33,7 +34,8 @@ const AddTodayPlanBtn = ({ exercise }: { exercise: IExercisesType }) => {
     <div>
       <button
         onClick={() => handelAddToday(exercise.id)}
-        className="btn h-11 min-h-11 rounded-lg border-none bg-[#b6ff00] px-4 text-xs font-bold text-black hover:bg-[#a4e600]"
+        className="btn h-11 min-h-11 rounded-lg border-none bg-[#b6ff00] px-4 text-xs font-bold text-black hover:bg-[#a4e600] disabled:cursor-not-allowed disabled:bg-[#242b1b] disabled:text-[#7e8870] disabled:opacity-100 sm:flex-none"
+        disabled={isDisabled}
       >
         <FaCalendarPlus className="text-sm" />
         Add to today&apos;s plan
