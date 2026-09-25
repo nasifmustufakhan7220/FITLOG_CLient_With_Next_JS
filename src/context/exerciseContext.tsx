@@ -32,6 +32,7 @@ const ExerciseContextProvider = ({children}:{children:React.ReactNode}) => {
     const [saveLater, setSaveLater] = useState<IExercisesType[]>([]);
     const [toggle, setToggle] = useState<boolean>(true);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    
 
     useEffect(()=>{
         const getPlanExercise = localStorage.getItem("addPlans");

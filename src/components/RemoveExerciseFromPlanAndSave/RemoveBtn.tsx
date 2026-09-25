@@ -1,8 +1,9 @@
 "use client";
 import { exerciseContext } from "@/context/exerciseContext";
 import { IExercisesType } from "@/types/workOut.type";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { FaXmark } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 const RemoveBtn = ({ exercise }: { exercise: IExercisesType }) => {
   const { addPlans, setaddPlans, saveLater, setSaveLater, toggle } =
@@ -14,6 +15,9 @@ const RemoveBtn = ({ exercise }: { exercise: IExercisesType }) => {
         (planId) => Number(planId.id) !== Number(id),
       );
       setaddPlans(filteredPlanExercise);
+      toast.success(`${exercise.name} is remove succesfully from the Today's plan!`,{
+        className: "!bg-[#13151c]"
+      });
       return;
     }
 
@@ -21,6 +25,9 @@ const RemoveBtn = ({ exercise }: { exercise: IExercisesType }) => {
       (saveId) => Number(saveId.id) !== Number(id),
     );
     setSaveLater(filteredSaveExercise);
+    toast.success(`${exercise.name} is remove succesfully from the Save for later!`, {
+      className: "!bg-[#13151c]"
+    });
   };
 
   return (

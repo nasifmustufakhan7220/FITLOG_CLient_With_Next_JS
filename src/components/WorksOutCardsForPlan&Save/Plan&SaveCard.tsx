@@ -2,10 +2,11 @@ import { IExercisesType } from "@/types/workOut.type";
 
 import Image from "next/image";
 
-import { FaCheck, FaClock, FaFire, FaStar } from "react-icons/fa6";
+import {FaClock, FaFire, FaStar } from "react-icons/fa6";
 
 import ViewDetailsBtn from "../ViewDetailsBtn/ViewDetailsBtn";
 import RemoveBtn from "../RemoveExerciseFromPlanAndSave/RemoveBtn";
+import MarkAsDoneBtn from "../AddToday&SaveButton/MarkAsDoneBtn";
 
 interface IPlanProps {
   exercise: IExercisesType;
@@ -66,13 +67,7 @@ const PlanSaveCard = ({ exercise }: IPlanProps) => {
           <ViewDetailsBtn exercise={exercise} />
 
           {/* Mark as Done */}
-          <button
-            type="button"
-            className="btn h-11 min-h-0 flex-1 rounded-full border-0 bg-[#c6ff00] px-5 text-sm font-semibold text-black shadow-none hover:bg-[#b8ef00] sm:flex-none"
-          >
-            <FaCheck className="text-sm" />
-            Mark as Done
-          </button>
+         <MarkAsDoneBtn exercise={exercise} />
 
           {/* Close */}
           <RemoveBtn exercise={exercise}/>

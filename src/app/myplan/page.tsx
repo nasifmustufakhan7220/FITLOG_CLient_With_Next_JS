@@ -1,15 +1,36 @@
 "use client";
+
 import { oswald } from "@/app/font";
+
 import EmptyTextShowing from "@/components/EmptyTextShowing/EmptyTextShowing";
 import PlanAndSaveLoading from "@/components/PlanAndSaveLoading/PlanAndSaveLoading";
 import PlanSaveCard from "@/components/WorksOutCardsForPlan&Save/Plan&SaveCard";
+
 import { exerciseContext } from "@/context/exerciseContext";
-import { useContext } from "react";
+import { IExercisesType } from "@/types/workOut.type";
+
+import { useContext, useState } from "react";
 
 const MyPlanPage = () => {
-  const { addPlans, saveLater, toggle, setToggle, isLoading } =
-    useContext(exerciseContext);
+  const { addPlans, saveLater, toggle, setToggle, isLoading } = useContext(exerciseContext);
 
+  const [sortBy, setSortBy] = useState<"Duration" | "Calories" | "Rating">("Duration");
+
+  const handelExerciseSort = (exercises: IExercisesType[])=>{
+    const exercisesSort = [...exercises];
+    if(sortBy === "Duration"){
+      exercisesSort.sort((a,b)=> b.duration - a.duration);
+    }else if(sortBy === "Calories"){
+      exercisesSort.sort((a,b)=>a.caloriesBurned - b.caloriesBurned);
+    }else if(sortBy === "Rating"){
+      exercisesSort.sort((a,b)=> b.rating - a.rating);
+    }
+
+    return exercisesSort;
+  };
+
+  const handelAddPlansSort = handelExerciseSort(addPlans);
+  const handelSaveLaterSort = handelExerciseSort(saveLater);
   return (
     <div className="mt-12 w-full sm:mt-16 lg:mt-20">
       {/* Header */}
@@ -118,56 +139,83 @@ const MyPlanPage = () => {
         </div>
       )}
 
-      {/* Tabs */}
+      {/* Tabs & Sort By */}
       <div className="mx-auto mt-6 w-full max-w-280 px-4 sm:mt-8 sm:px-6 lg:px-8">
-        <div className="tabs tabs-box w-full bg-[#13151c] p-1.5 sm:p-2">
-          {/* Today's Plan */}
-          <input
-            onChange={() => setToggle(true)}
-            type="radio"
-            name="my_tabs_6"
-            className="tab flex-1 text-xs font-medium text-[#8A92A0] transition-all duration-300 checked:bg-[#CCFF00] checked:text-[#13151c] sm:text-sm"
-            aria-label="Today's Plan"
-            defaultChecked
-          />
+        {/* Top Controls */}
+        <div className="mb-5 flex items-center justify-between gap-3">
+          {/* Tabs */}
+          <div className="tabs tabs-box w-51.5 bg-[#13151c] p-1 sm:p-1.5">
+            {/* Today's Plan */}
+            <input
+              onChange={() => setToggle(true)}
+              type="radio"
+              name="my_tabs_6"
+              className="tab flex-1 text-[11px] font-medium text-[#8A92A0] transition-all duration-300 checked:bg-[#1c202b] checked:text-white sm:text-xs"
+              aria-label="Today's Plan"
+              defaultChecked
+            />
 
-          <div className="tab-content mt-1 w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:mt-2 sm:p-6">
-            {isLoading ? (
-              <PlanAndSaveLoading/>
-            ) : addPlans.length > 0 ? (
-              <div className="flex flex-col gap-4">
-                {addPlans.map((exercise, indx) => (
-                  <PlanSaveCard key={indx} exercise={exercise}></PlanSaveCard>
-                ))}
-              </div>
-            ) : (
-              <EmptyTextShowing />
-            )}
+            {/* Saved */}
+            <input
+              onChange={() => setToggle(false)}
+              type="radio"
+              name="my_tabs_6"
+              className="tab flex-1 text-[11px] font-medium text-[#8A92A0] transition-all duration-300 checked:bg-[#1c202b] checked:text-white sm:text-xs"
+              aria-label="Saved"
+            />
           </div>
 
-          {/* Saved */}
-          <input
-            onChange={() => setToggle(false)}
-            type="radio"
-            name="my_tabs_6"
-            className="tab flex-1 text-xs font-medium text-[#8A92A0] transition-all duration-300 checked:bg-[#CCFF00] checked:text-[#13151c] sm:text-sm"
-            aria-label="Saved"
-          />
+          {/* Sort By */}
+          <div className="flex items-center gap-2">
+            <label htmlFor="sortBy" className="text-[11px] text-[#8A92A0] sm:text-xs">
+              Sort By
+            </label> 
+            <select
+              value={sortBy}
+              onChange={(e)=>setSortBy(e.target.value as "Duration" | "Calories" | "Rating")}
+              className="select select-sm h-8 min-h-8 w-24 border-[#272c37] bg-[#13151c] px-2 text-[11px] text-white focus:border-[#CCFF00] sm:w-28 sm:text-xs"
+            >
+              
+              <option value={"Duration"}>Duration</option>
+              <option value={"Calories"}>Calories</option>
+              <option value={"Rating"}>Rating</option>
+            </select>
 
-          <div className="tab-content mt-1 w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:mt-2 sm:p-6">
-            {isLoading ? (
-              <PlanAndSaveLoading/>
-            ) : saveLater.length > 0 ? (
-              <div className="flex flex-col gap-4">
-                {saveLater.map((exercise, indx) => (
-                  <PlanSaveCard key={indx} exercise={exercise}></PlanSaveCard>
-                ))}
-              </div>
-            ) : (
-              <EmptyTextShowing />
-            )}
+            
           </div>
         </div>
+
+        {/* Today's Plan Content */}
+        {toggle ? (
+          <div className="w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:p-6">
+            {isLoading ? (
+              <PlanAndSaveLoading />
+            ) : handelAddPlansSort.length > 0 ? (
+              <div className="flex flex-col gap-4">
+                {handelAddPlansSort.map((exercise, indx) => (
+                  <PlanSaveCard key={indx} exercise={exercise} />
+                ))}
+              </div>
+            ) : (
+              <EmptyTextShowing />
+            )}
+          </div>
+        ) : (
+          /* Saved Content */
+          <div className="w-full rounded-xl border border-[#272b35] bg-[#1a1d26] p-4 sm:p-6">
+            {isLoading ? (
+              <PlanAndSaveLoading />
+            ) : handelSaveLaterSort.length > 0 ? (
+              <div className="flex flex-col gap-4">
+                {handelSaveLaterSort.map((exercise, indx) => (
+                  <PlanSaveCard key={indx} exercise={exercise} />
+                ))}
+              </div>
+            ) : (
+              <EmptyTextShowing />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
