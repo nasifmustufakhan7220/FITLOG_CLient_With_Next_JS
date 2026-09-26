@@ -40,7 +40,7 @@ const MarkAsDoneBtn = ({ exercise }: { exercise: IExercisesType }) => {
         disabled={toggle ? addMark : saveMark}
         className="btn h-11 min-h-0 flex-1 cursor-pointer rounded-full border-0 bg-[#c6ff00] px-5 text-sm font-semibold text-black shadow-none transition-all duration-200 hover:bg-[#b8ef00] disabled:cursor-not-allowed disabled:bg-[#242b1b] disabled:text-[#7e8870] disabled:opacity-100 sm:flex-none">
         <FaCheck className="text-sm" />
-        Mark as Done
+        {toggle ? addMark ? "workout done" : "Mark as Done" : saveMark? "workout done" :"Mark as Done"}
       </button>
     </div>
   );
