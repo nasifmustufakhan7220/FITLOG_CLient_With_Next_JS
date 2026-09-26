@@ -12,14 +12,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "FIT LOG",
-  description: "A Gym website, where everybody can fit their health and make their life healthy",
+  description: "A Gym website, where everybody can fit their health and make their life happy",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="light"
+      data-theme="dark"
       data-scroll-behavior="smooth"
       scrollbar-gutter= "stable"
       className={`${inter.className} h-full antialiased scroll-smooth overflow-x-hidden`}
