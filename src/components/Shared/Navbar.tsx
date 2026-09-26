@@ -42,7 +42,7 @@ const Navbar = () => {
   );
 
   return (
-    <header className="border-b border-[#1c1f24]">
+    <header className="border-b border-[#383c43]">
       <div className="navbar mx-auto min-h-16 w-full max-w-6xl px-4 py-2 sm:px-6 lg:px-8">
         {/* Left Section: Menu + Logo */}
         <div className="navbar-start min-w-0 gap-2 sm:gap-4">
