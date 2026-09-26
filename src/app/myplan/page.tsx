@@ -147,16 +147,17 @@ const MyPlanPage = () => {
           <div className="tabs tabs-box w-51.5 bg-[#13151c] p-1 sm:p-1.5">
             {/* Today's Plan */}
             <input
+              checked={toggle}
               onChange={() => setToggle(true)}
               type="radio"
               name="my_tabs_6"
               className="tab flex-1 text-[11px] font-medium text-[#8A92A0] transition-all duration-300 checked:bg-[#1c202b] checked:text-white sm:text-xs"
               aria-label="Today's Plan"
-              defaultChecked
             />
 
             {/* Saved */}
             <input
+              checked={!toggle}
               onChange={() => setToggle(false)}
               type="radio"
               name="my_tabs_6"
